@@ -77,6 +77,8 @@ DTl$feature <- gsub("\\(\\)","",DTl$feature)
 ## separate(featureDT,feature,c('measure','type','axis'),sep='-')
 DTtidy <- separate(DTl,feature,c('measure','type','axis'),sep='-')
 DTtidy <- DTtidy[,c('subjectCode','activity','measure','type','axis','value')]
+DTtidy$measure <- gsub('^t','time.',DTtidy$measure)
+DTtidy$measure <- gsub('^f','frequency.',DTtidy$measure)
 ## check result
 ## head(DT[,c('subjectCode','activityCode','V1')])
 ## head(DTtidy[DTtidy$activity=='STANDING',])
