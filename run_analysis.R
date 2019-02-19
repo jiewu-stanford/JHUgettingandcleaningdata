@@ -17,8 +17,8 @@ list.files('./UCI HAR Dataset',recursive=TRUE)
 ## Load train datasets
 subjectTrain <- fread("./UCI HAR Dataset/train/subject_train.txt")
 subjectTest <- fread("./UCI HAR Dataset/test/subject_test.txt")
-activityTrain <- fread("./UCI HAR Dataset/train/Y_train.txt")
-activityTest <- fread("./UCI HAR Dataset/test/Y_test.txt")
+activityTrain <- fread("./UCI HAR Dataset/train/y_train.txt")
+activityTest <- fread("./UCI HAR Dataset/test/y_test.txt")
 XTrain <- fread("./UCI HAR Dataset/train/X_train.txt")
 XTest <- fread("./UCI HAR Dataset/test/X_test.txt")
 ## combine test and train subject
@@ -87,3 +87,7 @@ DTstats <- DTtidy[, list(count=.N, average=mean(value)), by=c('subjectCode',
 head(DTstats)
 ## output data table
 write.table(DTstats,file='./tidydata.txt',row.name=FALSE)
+
+## Others use the following commands for step 5
+## aggregate(. ~subject + activityCat,DT,mean)
+## DT %>% group_by(subject, activity) %>% summarise_each(funs(mean))
